@@ -69,6 +69,7 @@ trigger:
     - cron
   cron:
     - hourly
+    - hourly-build
   status:
     - success
     - failure
