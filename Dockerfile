@@ -17,5 +17,5 @@ RUN pacman -Syu --noconfirm --needed git \
     && pacman -Scc \
     && rm -rfv /var/cache/pacman/* /var/lib/pacman/sync/*
 
-RUN bsdtar xfv hugo.tar.gz && rm -v hugo.tgz README.md LICENSE \
+RUN bsdtar xfv hugo.tar.gz && rm -v hugo.tar.gz README.md LICENSE \
     && mv -v hugo /usr/local/bin/
