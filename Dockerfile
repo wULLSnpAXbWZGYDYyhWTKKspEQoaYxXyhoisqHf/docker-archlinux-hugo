@@ -1,6 +1,9 @@
 FROM archlinux/base
 
 ENV container=docker
+ENV HUGO_VERSION 0.66.0
+
+ADD https://github.com/gohugoio/hugo/releases/download/v${HUGO_VERSION}/hugo_extended_${HUGO_VERSION}_Linux-64bit.tar.gz hugo.tar.gz
 
 ARG BUILD_DATE
 ARG VCS_REF
@@ -9,10 +12,9 @@ LABEL org.label-schema.build-date=$BUILD_DATE \
       org.label-schema.vcs-url="https://github.com/wULLSnpAXbWZGYDYyhWTKKspEQoaYxXyhoisqHf/docker-archlinux-hugo.git" \
       org.label-schema.vcs-ref=$VCS_REF
 
-RUN pacman -Syu --noconfirm --needed wget tar git \
+RUN pacman -Syu --noconfirm --needed git \
     && pacman -Scc \
     && rm -rfv /var/cache/pacman/* /var/lib/pacman/sync/*
 
-RUN wget -q https://github.com/gohugoio/hugo/releases/download/v0.66.0/hugo_extended_0.66.0_Linux-64bit.tar.gz -O hugo.tgz \
-    && tar xfv hugo.tgz && rm -v hugo.tgz README.md LICENSE \
+RUN bsdtar xfv hugo.tar.gz && rm -v hugo.tgz README.md LICENSE \
     && mv -v hugo /usr/local/bin/
