@@ -8,9 +8,9 @@ The image is rebuilt approximately every hour to ensure it always has the latest
 
 ## What you get
 * updated Arch Linux [base image](https://hub.docker.com/r/archlinux/base)
-* wget
-* tar
 * git
+* ssh
+* rsync (for deployments of the builds)
 * hugo-extended (latest version from [GitHub](https://github.com/gohugoio/hugo/releases))
 
 ## Purpose
