@@ -29,29 +29,29 @@ clone:
 
 trigger:
   branch:
-    - master
-    - "release/*"
+  - master
+  - "release/*"
   event:
-    - push
-    - tag
+  - push
+  - tag
   status:
-    - success
-    - failure
+  - success
+  - failure
 
 depends_on:
   - dockerhub-build-trigger
 
 steps:
-  - name: discord
-    pull: always
-    image: curlimages/curl
-    environment:
-      webhook_id:
-        from_secret: discord_webhook_id
-      webhook_token:
-        from_secret: discord_webhook_token
-    commands:
-    - curl -H "Content-Type: application/json" -X POST https://discordapp.com/api/webhooks/$webhook_id/$webhook_token -d '{
+- name: discord
+  pull: always
+  image: curlimages/curl
+  environment:
+    webhook_id:
+      from_secret: discord_webhook_id
+    webhook_token:
+      from_secret: discord_webhook_token
+  commands:
+  - curl -H "Content-Type: application/json" -X POST https://discordapp.com/api/webhooks/$webhook_id/$webhook_token -d '{
   "wait": false,
   "content": "",
   "username": "",
@@ -102,16 +102,16 @@ depends_on:
   - dockerhub-build-trigger
 
 steps:
-  - name: discord
-    pull: always
-    image: curlimages/curl
-    environment:
-      webhook_id:
-        from_secret: discord_webhook_hourly_id
-      webhook_token:
-        from_secret: discord_webhook_hourly_token
-    commands:
-    - curl -H "Content-Type: application/json" -X POST https://discordapp.com/api/webhooks/$webhook_id/$webhook_token -d '{
+- name: discord
+  pull: always
+  image: curlimages/curl
+  environment:
+    webhook_id:
+      from_secret: discord_webhook_hourly_id
+    webhook_token:
+      from_secret: discord_webhook_hourly_token
+  commands:
+  - curl -H "Content-Type: application/json" -X POST https://discordapp.com/api/webhooks/$webhook_id/$webhook_token -d '{
   "wait": false,
   "content": "",
   "username": "",
