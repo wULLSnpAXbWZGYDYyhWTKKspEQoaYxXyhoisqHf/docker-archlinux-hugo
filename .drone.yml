@@ -13,7 +13,7 @@ steps:
     ENDPOINT:
       from_secret: dockerhub_endpoint
   commands:
-  #- curl -s -X POST $ENDPOINT
+  - curl -s -X POST $ENDPOINT
   - echo
 
 
@@ -25,21 +25,13 @@ platform:
   os: linux
   arch: amd64
 
+platform:
+  os: linux
+  arch: amd64
+
 clone:
   disable: true
 
-steps:
-- name: discord
-  pull: always
-  image: curlimages/curl
-  environment:
-    webhook_id:
-      from_secret: discord_webhook_id
-    webhook_token:
-      from_secret: discord_webhook_token
-  commands:
-  - curl -sL -H "Content-Type:application/json" -X POST https://discordapp.com/api/webhooks/$webhook_id/$webhook_token -d '{"wait":false,"content":"drone","username":"","avatar_url":"","tts":false,"embeds":[{"title":":white_check_mark:Build ${DRONE_BUILD_NUMBER} of `${DRONE_REPO}` succeeded.","description":"event:**`${DRONE_BUILD_EVENT}`**\n\ncommit [`${DRONE_COMMIT_SHA}`](${DRONE_COMMIT_LINK}) on [`${DRONE_COMMIT_BRANCH}`](https://git.dotya.ml/${DRONE_REPO}/src/branch/${DRONE_COMMIT_BRANCH})\n${DRONE_COMMIT_MESSAGE} - ${DRONE_COMMIT_AUTHOR_NAME}\n\n[go to repo](https://${DRONE_SYSTEM_HOST}/${DRONE_REPO})","url":"https://${DRONE_SYSTEM_HOST}/${DRONE_REPO}/${DRONE_BUILD_NUMBER}","color":7506394,"footer":{"text":"drone discord webhook"},"author":{"name":"${DRONE_COMMIT_AUTHOR}","url":"https://git.dotya.ml/${DRONE_COMMIT_AUTHOR}","icon_url":""},"fields":null}]}'
-  - curl -sL -H "Content-Type:application/json" -X POST https://discordapp.com/api/webhooks/$webhook_id/$webhook_token -d '{"content":"Hello, World!","tts":false,"embed":{"title":"Hello, Embed!","description":"This is an embedded message."}}'
 trigger:
   branch:
     - master
@@ -53,6 +45,58 @@ trigger:
 
 depends_on:
   - dockerhub-build-trigger
+
+steps:
+  - name: discord
+    pull: always
+    image: appleboy/drone-discord:1.2.4
+    settings:
+        message: "{{#success build.status}} {{commit.author}}\n✅Build #{{build.number}} of `{{repo.name}}` succeeded.\nevent: **`{{build.event}}`**\n\ncommit [`{{build.commit}}`](https://git.dotya.ml/{{repo.owner}}/{{repo.name}}/commit/{{build.commit}}) on `{{commit.branch}}`\n``` {{commit.message}} ```\n[build log]({{build.link}}) {{else}} {{commit.author}}\n❌Build #{{build.number}} of `{{repo.name}}` failed.\ncommit [`{{build.commit}}`](https://git.dotya.ml/{{repo.owner}}/{{repo.name}}/commit/{{build.commit}}) on `{{commit.branch}} on `{{commit.branch}}`:\n``` {{commit.message}} ```\n[build log]({{build.link}}) {{/success}}\n"
+      webhook_id:
+        from_secret: discord_webhook_id
+      webhook_token:
+        from_secret: discord_webhook_token
+
+# ---
+# kind: pipeline
+# name: notifications
+#
+# platform:
+  # os: linux
+  # arch: amd64
+#
+# platform:
+  # os: linux
+  # arch: amd64
+#
+# clone:
+  # disable: true
+#
+# steps:
+# - name: discord
+  # pull: always
+  # image: curlimages/curl
+  # environment:
+    # webhook_id:
+      # from_secret: discord_webhook_id
+    # webhook_token:
+      # from_secret: discord_webhook_token
+  # commands:
+  # - curl -sL -H "Content-Type:application/json" -X POST https://discordapp.com/api/webhooks/$webhook_id/$webhook_token -d '{"wait":false,"content":"drone","username":"","avatar_url":"","tts":false,"embeds":[{"title":":white_check_mark:Build ${DRONE_BUILD_NUMBER} of `${DRONE_REPO}` succeeded.","description":"event:**`${DRONE_BUILD_EVENT}`**\n\ncommit [`${DRONE_COMMIT_SHA}`](${DRONE_COMMIT_LINK}) on [`${DRONE_COMMIT_BRANCH}`](https://git.dotya.ml/${DRONE_REPO}/src/branch/${DRONE_COMMIT_BRANCH})\n${DRONE_COMMIT_MESSAGE} - ${DRONE_COMMIT_AUTHOR_NAME}\n\n[go to repo](https://${DRONE_SYSTEM_HOST}/${DRONE_REPO})","url":"https://${DRONE_SYSTEM_HOST}/${DRONE_REPO}/${DRONE_BUILD_NUMBER}","color":7506394,"footer":{"text":"drone discord webhook"},"author":{"name":"${DRONE_COMMIT_AUTHOR}","url":"https://git.dotya.ml/${DRONE_COMMIT_AUTHOR}","icon_url":""},"fields":null}]}'
+  # - curl -sL -H "Content-Type:application/json" -X POST https://discordapp.com/api/webhooks/$webhook_id/$webhook_token -d '{"content":"Hello, World!","tts":false,"embed":{"title":"Hello, Embed!","description":"This is an embedded message."}}'
+# trigger:
+  # branch:
+    # - master
+    # - "release/*"
+  # event:
+    # - push
+    # - tag
+  # status:
+    # - success
+    # - failure
+#
+# depends_on:
+  # - dockerhub-build-trigger
 
 
 ---
