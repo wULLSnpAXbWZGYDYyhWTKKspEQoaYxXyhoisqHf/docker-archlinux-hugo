@@ -24,12 +24,6 @@ platform:
   os: linux
   arch: amd64
 
-clone:
-  disable: true
-
-depends_on:
-  - dockerhub-build-trigger
-
 steps:
 - name: discord
   pull: always
@@ -74,6 +68,12 @@ trigger:
   status:
     - success
     - failure
+
+clone:
+  disable: true
+
+depends_on:
+  - dockerhub-build-trigger
 
 
 ---
