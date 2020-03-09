@@ -24,16 +24,8 @@ platform:
   os: linux
   arch: amd64
 
-trigger:
-  branch:
-    - master
-    - "release/*"
-  event:
-    - push
-    - tag
-  status:
-    - success
-    - failure
+clone:
+  disable: true
 
 depends_on:
   - dockerhub-build-trigger
@@ -72,6 +64,16 @@ steps:
     }
   ]
 }'
+trigger:
+  branch:
+    - master
+    - "release/*"
+  event:
+    - push
+    - tag
+  status:
+    - success
+    - failure
 
 
 ---
