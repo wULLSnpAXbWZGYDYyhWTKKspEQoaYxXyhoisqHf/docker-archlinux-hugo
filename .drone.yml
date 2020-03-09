@@ -51,7 +51,7 @@ steps:
     pull: always
     image: appleboy/drone-discord:1.2.4
     settings:
-        message: "{{#success build.status}} {{commit.author}}\n✅Build #{{build.number}} of `{{repo.name}}` succeeded.\nevent: **`{{build.event}}`**\n\ncommit [`{{build.commit}}`](https://git.dotya.ml/{{repo.owner}}/{{repo.name}}/commit/{{build.commit}}) on `{{commit.branch}}`\n``` {{commit.message}} ```\n[build log]({{build.link}}) {{else}} {{commit.author}}\n❌Build #{{build.number}} of `{{repo.name}}` failed.\ncommit [`{{build.commit}}`](https://git.dotya.ml/{{repo.owner}}/{{repo.name}}/commit/{{build.commit}}) on `{{commit.branch}} on `{{commit.branch}}`:\n``` {{commit.message}} ```\n[build log]({{build.link}}) {{/success}}\n"
+      message: "{{#success build.status}} {{commit.author}}\n✅Build #{{build.number}} of `{{repo.name}}` succeeded.\nevent: **`{{build.event}}`**\n\ncommit [`{{build.commit}}`](https://git.dotya.ml/{{repo.owner}}/{{repo.name}}/commit/{{build.commit}}) on `{{commit.branch}}`\n``` {{commit.message}} ```\n[build log]({{build.link}}) {{else}} {{commit.author}}\n❌Build #{{build.number}} of `{{repo.name}}` failed.\ncommit [`{{build.commit}}`](https://git.dotya.ml/{{repo.owner}}/{{repo.name}}/commit/{{build.commit}}) on `{{commit.branch}} on `{{commit.branch}}`:\n``` {{commit.message}} ```\n[build log]({{build.link}}) {{/success}}\n"
       webhook_id:
         from_secret: discord_webhook_id
       webhook_token:
