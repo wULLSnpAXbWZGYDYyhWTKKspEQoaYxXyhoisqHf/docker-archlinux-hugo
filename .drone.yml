@@ -41,9 +41,10 @@ steps:
   commands:
   - echo $ENDPOINT
   - echo ${DRONE_COMMIT_SHA}
-  - export MESSAGE='{"wait":false,"content":"","username":"","avatar_url":"","tts":false,"embeds":[{"title":":white_check_mark:Build \#${DRONE_BUILD_NUMBER} of `${DRONE_REPO}` succeeded.","description":"event:**`${DRONE_BUILD_EVENT}`**\n\ncommit [`${DRONE_COMMIT_SHA}`](${DRONE_COMMIT_LINK}) on [`${DRONE_COMMIT_BRANCH}`](${DRONE_REPO_LINK}/src/branch/${DRONE_COMMIT_BRANCH})\n${DRONE_COMMIT_MESSAGE} - ${DRONE_COMMIT_AUTHOR_NAME}\n\n[go to repo](https://${DRONE_SYSTEM_HOST}/${DRONE_REPO})","url":"https://${DRONE_SYSTEM_HOST}/${DRONE_REPO}/${DRONE_BUILD_NUMBER}","color":7506394,"footer":{"text":"drone discord webhook"},"author":{"name":"${DRONE_COMMIT_AUTHOR}","url":"https://git.dotya.ml/${DRONE_COMMIT_AUTHOR}","icon_url":"https://git.dotya.ml/user/avatar/${DRONE_COMMIT_AUTHOR}/-1"},"fields":null}]}'
+  - export MESSAGE='{"wait":false,"content":"","username":"","avatar_url":"","tts":false,"embeds":[{"title":":white_check_mark:Build \#${DRONE_BUILD_NUMBER} of `${DRONE_REPO}` succeeded.","description":"event:**`${DRONE_BUILD_EVENT}`**\n\ncommit [`${DRONE_COMMIT_SHA}`](${DRONE_COMMIT_LINK}) on [`${DRONE_COMMIT_BRANCH}`](https://git.dotya.ml/${DRONE_REPO}/src/branch/${DRONE_COMMIT_BRANCH})\n${DRONE_COMMIT_MESSAGE} - ${DRONE_COMMIT_AUTHOR_NAME}\n\n[go to repo](https://${DRONE_SYSTEM_HOST}/${DRONE_REPO})","url":"https://${DRONE_SYSTEM_HOST}/${DRONE_REPO}/${DRONE_BUILD_NUMBER}","color":7506394,"footer":{"text":"drone discord webhook"},"author":{"name":"${DRONE_COMMIT_AUTHOR}","url":"https://git.dotya.ml/${DRONE_COMMIT_AUTHOR}","icon_url":"https://git.dotya.ml/user/avatar/${DRONE_COMMIT_AUTHOR}/-1"},"fields":null}]}'
   - echo $MESSAGE
-  - "curl -s -H 'Content-Type:application/json' -X POST $ENDPOINT/webhooks/$webhook_id/$webhook_token -d $MESSAGE"
+  - echo $webhook_id | wc -c
+  - curl -s -H 'Content-Type:application/json' -X POST $ENDPOINT/webhooks/$webhook_id/$webhook_token -d $MESSAGE
 trigger:
   branch:
     - master
