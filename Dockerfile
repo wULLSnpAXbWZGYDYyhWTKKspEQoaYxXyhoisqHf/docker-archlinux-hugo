@@ -1,4 +1,4 @@
-FROM archlinux/base
+FROM archlinux/base:latest
 
 ENV HUGO_VERSION 0.67.1
 
@@ -14,7 +14,7 @@ LABEL org.label-schema.build-date=$BUILD_DATE \
 ADD https://github.com/gohugoio/hugo/releases/download/v${HUGO_VERSION}/hugo_extended_${HUGO_VERSION}_Linux-64bit.tar.gz ./hugo.tar.gz
 
 
-RUN pacman -Syu --noconfirm --needed git \
+RUN pacman -Sy --noconfirm --needed git \
     && pacman -Scc \
     && rm -rfv /var/cache/pacman/* /var/lib/pacman/sync/*
 
