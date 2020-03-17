@@ -1,4 +1,4 @@
-FROM archlinux/base:latest
+FROM archlinux:latest
 
 ENV HUGO_VERSION 0.67.1
 
