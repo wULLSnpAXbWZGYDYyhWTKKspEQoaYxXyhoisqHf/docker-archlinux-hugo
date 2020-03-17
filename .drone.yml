@@ -24,10 +24,6 @@ platform:
   os: linux
   arch: amd64
 
-platform:
-  os: linux
-  arch: amd64
-
 clone:
   disable: true
 
