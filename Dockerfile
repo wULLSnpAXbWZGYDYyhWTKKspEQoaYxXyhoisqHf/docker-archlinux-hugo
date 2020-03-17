@@ -9,7 +9,8 @@ LABEL description="Docker image for building websites with Hugo static site gene
 
 LABEL org.label-schema.build-date=$BUILD_DATE \
       org.label-schema.vcs-url="https://github.com/wULLSnpAXbWZGYDYyhWTKKspEQoaYxXyhoisqHf/docker-archlinux-hugo.git" \
-      org.label-schema.vcs-ref=$VCS_REF
+      org.label-schema.vcs-ref=$VCS_REF \
+      org.label-schema.license=GPL-3.0
 
 ADD https://github.com/gohugoio/hugo/releases/download/v${HUGO_VERSION}/hugo_extended_${HUGO_VERSION}_Linux-64bit.tar.gz ./hugo.tar.gz
 
