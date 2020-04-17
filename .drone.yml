@@ -30,7 +30,6 @@ clone:
 trigger:
   branch:
     - master
-    - "release/*"
   event:
     - push
     - tag
@@ -142,10 +141,11 @@ clone:
 
 trigger:
   event:
-    - cron
+  - cron
   cron:
-    - hourly
-    - hourly-build
+  - hourly
+  - hourly-build
+  - daily
   status:
     - success
     - failure
