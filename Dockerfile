@@ -12,17 +12,18 @@ LABEL org.label-schema.build-date=$BUILD_DATE \
       org.label-schema.vcs-ref=$VCS_REF \
       org.label-schema.license=GPL-3.0
 
-ADD https://github.com/gohugoio/hugo/releases/download/v${HUGO_VERSION}/hugo_extended_${HUGO_VERSION}_Linux-64bit.tar.gz ./hugo.tar.gz
+ADD https://github.com/gohugoio/hugo/releases/download/v${HUGO_VERSION}/hugo_extended_${HUGO_VERSION}_Linux-64bit.tar.gz /tmp/hugo.tar.gz
 
 WORKDIR /tmp/
-RUN bsdtar xfv hugo.tar.gz && rm -v hugo.tar.gz README.md LICENSE \
-    && mv -v hugo /usr/local/bin/
-
-RUN pacman -Sy --noconfirm --needed git && pacman --noconfirm -R $(pacman -Qdtq)
-RUN pacman --noconfirm -Runs \
+RUN pacman -Sy --noconfirm --needed git && pacman --noconfirm -R $(pacman -Qdtq) \
+    && bsdtar xfv /tmp/hugo.tar.gz && rm -v /tmp/hugo.tar.gz README.md LICENSE \
+    && chmod +x /tmp/hugo \
+    && mkdir -pv /usr/local/bin \
+    && mv -v /tmp/hugo /usr/local/bin/ \
+    && pacman --noconfirm -Runs \
     gzip less sysfsutils which \
     && pacman --noconfirm -Runs tar gawk || true \
-    && pacman -Scc && rm -rfv /var/cache/pacman/* /var/lib/pacman/sync/*
+    && pacman -Scc && rm -rfv /var/cache/pacman/* /var/lib/pacman/sync/* \
     && rm -rv /usr/share/info/* \
     && rm -rv /usr/share/man/* \
     && rm -rv /usr/share/doc/* \
