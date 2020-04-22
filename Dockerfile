@@ -22,8 +22,8 @@ RUN pacman -Sy --noconfirm --needed git && pacman --noconfirm -R $(pacman -Qdtq)
     && mv -v /tmp/hugo /usr/local/bin/ \
     && pacman --noconfirm -Runs \
     gzip less sysfsutils which \
-    && pacman --noconfirm -Runs tar gawk || true \
-    && pacman -Scc && rm -rfv /var/cache/pacman/* /var/lib/pacman/sync/* \
+    && pacman --noconfirm -Runs tar gawk || true
+RUN pacman -Scc && rm -rfv /var/cache/pacman/* /var/lib/pacman/sync/* \
     && rm -rv /usr/share/info/* \
     && rm -rv /usr/share/man/* \
     && rm -rv /usr/share/doc/* \
