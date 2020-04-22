@@ -15,8 +15,8 @@ LABEL org.label-schema.build-date=$BUILD_DATE \
 ADD https://github.com/gohugoio/hugo/releases/download/v${HUGO_VERSION}/hugo_extended_${HUGO_VERSION}_Linux-64bit.tar.gz /tmp/hugo.tar.gz
 
 WORKDIR /tmp/
-RUN pacman -Sy --noconfirm --needed git && pacman --noconfirm -R $(pacman -Qdtq) \
-    && bsdtar xfv /tmp/hugo.tar.gz && rm -v /tmp/hugo.tar.gz README.md LICENSE \
+RUN pacman -Sy --noconfirm --needed git && pacman --noconfirm -R $(pacman -Qdtq)
+RUN bsdtar xfv /tmp/hugo.tar.gz && rm -v /tmp/hugo.tar.gz README.md LICENSE \
     && chmod +x /tmp/hugo \
     && mkdir -pv /usr/local/bin \
     && mv -v /tmp/hugo /usr/local/bin/ \
