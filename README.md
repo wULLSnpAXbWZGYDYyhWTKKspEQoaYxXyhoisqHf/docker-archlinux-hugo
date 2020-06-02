@@ -10,7 +10,7 @@ This repository provides the Dockerfile to create a Docker image used for web de
 The image is rebuilt approximately every hour to ensure it always has the latest packages.
 
 ## What you get
-* updated Arch Linux [base image](https://hub.docker.com/_/archlinux)
+* updated Arch Linux [image](https://hub.docker.com/r/immawanderer/archlinux) based on [base image](https://hub.docker.com/_/archlinux)
 * git
 * hugo-extended (latest version from [GitHub](https://github.com/gohugoio/hugo/releases))
 

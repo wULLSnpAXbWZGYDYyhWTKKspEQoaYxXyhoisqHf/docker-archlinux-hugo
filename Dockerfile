@@ -1,4 +1,4 @@
-FROM archlinux:latest
+FROM immawanderer/archlinux:latest
 
 ENV HUGO_VERSION 0.72.0
 
