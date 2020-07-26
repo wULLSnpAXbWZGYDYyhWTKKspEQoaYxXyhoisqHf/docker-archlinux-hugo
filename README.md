@@ -9,6 +9,9 @@ This repository provides the Dockerfile to create a Docker image used for web de
 
 The image is rebuilt approximately every hour to ensure it always has the latest packages.
 
+push mirror lives in [this GitHub repo](https://github.com/wULLSnpAXbWZGYDYyhWTKKspEQoaYxXyhoisqHf/docker-archlinux-hugo)  
+development happens on [this Gitea instance](https://git.dotya.ml/wanderer/docker-archlinux-hugo)
+
 ## What you get
 * updated Arch Linux [image](https://hub.docker.com/r/immawanderer/archlinux) based on [base image](https://hub.docker.com/_/archlinux)
 * git
