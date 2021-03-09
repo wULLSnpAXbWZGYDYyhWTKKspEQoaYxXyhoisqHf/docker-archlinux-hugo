@@ -20,9 +20,9 @@ RUN bsdtar xfv /tmp/hugo.tar.gz && rm -v /tmp/hugo.tar.gz README.md LICENSE \
     && chmod +x /tmp/hugo \
     && mkdir -pv /usr/local/bin \
     && mv -v /tmp/hugo /usr/local/bin/
-RUN pacman -Scc && rm -rfv /var/cache/pacman/* /var/lib/pacman/sync/* \
-    && rm -rv /usr/share/zoneinfo/* ; \
-    rm -rv /usr/share/i18n/* ;rm -rv /usr/include/* ; \
+RUN pacman -Scc && rm -rf /var/cache/pacman/* /var/lib/pacman/sync/* \
+    && rm -r /usr/share/zoneinfo/* ; \
+    rm -r /usr/share/i18n/* ;rm -r /usr/include/* ; \
     find /. -name "*~" -type f -delete; \
     find /usr/share/terminfo/. ! -name "*xterm*" ! -name "*screen*" ! -name "*screen*" -type f -delete; \
     rm -rv /tmp/* || true
