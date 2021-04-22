@@ -7,6 +7,11 @@
 
 This repository provides the Dockerfile to create a Docker image used for web developent using [Hugo](https://gohugo.io) website building framework.
 
+## :warning: :construction: DockerHub issue :construction: :warning:
+unless you're running Arch (or a Fedora 34+ or some reasonably recent thing) as your host OS, please make sure you read through the following issue write-up (since DH issue affects the base image it affects this one, too) \
+⇒ https://git.dotya.ml/wanderer/docker-archlinux/issues/1 \
+:warning: :construction: :construction: :construction: :warning:
+
 The image is rebuilt <del>approximately every hour</del> nightly to ensure it always has the latest packages.
 
 push mirror lives in [this GitHub repo](https://github.com/wULLSnpAXbWZGYDYyhWTKKspEQoaYxXyhoisqHf/docker-archlinux-hugo)  
