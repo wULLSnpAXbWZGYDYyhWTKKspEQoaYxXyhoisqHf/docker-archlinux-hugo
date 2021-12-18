@@ -1,6 +1,6 @@
 FROM immawanderer/archlinux:linux-amd64
 
-ENV HUGO_VERSION 0.90.1
+ENV HUGO_VERSION 0.91.0
 
 ARG BUILD_DATE
 ARG VCS_REF
