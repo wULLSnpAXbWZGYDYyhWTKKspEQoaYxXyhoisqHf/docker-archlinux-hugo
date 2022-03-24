@@ -27,6 +27,5 @@ RUN pacman -Syu --noconfirm --needed git && \
 	rm -rf /usr/share/zoneinfo/*; \
 	rm -rf /usr/share/i18n/*; \
 	rm -rf /usr/include/*; \
-	find /. -name "*~" -type f -delete; \
 	find /usr/share/terminfo/. ! -name "*xterm*" ! -name "*screen*" ! -name "*screen*" -type f -delete
 WORKDIR /
