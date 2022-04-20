@@ -10,7 +10,7 @@ platform:
 steps:
 - name: hadolint
   pull: always
-  image: hadolint/hadolint:v2.10.0-alpine
+  image: ghcr.io/hadolint/hadolint:v2.10.0-alpine
   commands:
   - hadolint --version
   - hadolint Containerfile
@@ -25,7 +25,7 @@ steps:
 
 - name: kaniko-build
   pull: always
-  image: immawanderer/drone-kaniko:linux-amd64
+  image: docker.io/immawanderer/drone-kaniko:linux-amd64
   settings:
     dockerfile: Containerfile
     context: .
@@ -39,7 +39,7 @@ steps:
 
 - name: kaniko-publish
   pull: always
-  image: immawanderer/drone-kaniko:linux-amd64
+  image: docker.io/immawanderer/drone-kaniko:linux-amd64
   settings:
     dockerfile: Containerfile
     context: .
@@ -87,7 +87,7 @@ depends_on:
 steps:
   - name: discord
     pull: if-not-exists
-    image: appleboy/drone-discord:latest
+    image: docker.io/appleboy/drone-discord:latest
     settings:
       message: "{{#success build.status}} ✅ [Build #{{build.number}}]({{build.link}}) of `{{repo.name}}` succeeded.\nevent: **`{{build.event}}`**\ncommit [`${DRONE_COMMIT_SHA:0:7}`](https://git.dotya.ml/${DRONE_REPO}/commit/${DRONE_COMMIT_SHA}) by {{commit.author}} on `{{commit.branch}}`{{else}} ❌ [Build #{{build.number}}]({{build.link}}) of `{{repo.name}}` failed.\nevent: **`${DRONE_BUILD_EVENT}`**\ncommit [`${DRONE_COMMIT_SHA:0:7}`](https://git.dotya.ml/${DRONE_REPO}/commit/${DRONE_COMMIT_SHA}) by {{commit.author}} on `{{commit.branch}}`\n```{{commit.message}}``` {{/success}}\n"
       webhook_id:
@@ -123,7 +123,7 @@ depends_on:
 steps:
   - name: discord
     pull: always
-    image: appleboy/drone-discord:latest
+    image: docker.io/appleboy/drone-discord:latest
     settings:
       message: "{{#success build.status}} ✅ [Nightly build #{{build.number}}]({{build.link}}) of `{{repo.name}}` succeeded.\nevent: **`{{build.event}}`**\ncommit [`${DRONE_COMMIT_SHA:0:7}`](https://git.dotya.ml/${DRONE_REPO}/commit/${DRONE_COMMIT_SHA}) by {{commit.author}} on `{{commit.branch}}`\n {{else}} ❌ [Nightly build #{{build.number}}]({{build.link}}) of `{{repo.name}}` failed.\nevent: **`${DRONE_BUILD_EVENT}`**\ncommit [`${DRONE_COMMIT_SHA:0:7}`](https://git.dotya.ml/${DRONE_REPO}/commit/${DRONE_COMMIT_SHA}) by {{commit.author}} on `{{commit.branch}}`\n {{/success}}\n"
       webhook_id:

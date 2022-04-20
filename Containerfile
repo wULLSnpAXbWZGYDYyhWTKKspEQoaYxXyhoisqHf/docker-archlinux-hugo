@@ -1,4 +1,4 @@
-FROM immawanderer/archlinux:linux-amd64
+FROM docker.io/immawanderer/archlinux:linux-amd64
 
 ENV HUGO_VERSION 0.97.3
 

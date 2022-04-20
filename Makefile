@@ -11,7 +11,7 @@ kanikocontext = .
 kanikoargs = -f=$(dfile) -c=$(kanikocontext) --use-new-run --snapshotMode=redo --build-arg BUILD_DATE=$(build_date) --build-arg VCS_REF=$(vcs_ref) --no-push
 vcs_ref = $$(git rev-parse --short HEAD)
 build_date= $$(date -u +"%Y-%m-%dT%H:%M:%SZ")
-hadolintimg = hadolint/hadolint
+hadolintimg = ghcr.io/hadolint/hadolint
 hadolinttag = v2.10.0-alpine
 hadolintargs = run --rm -i -v $$PWD/.hadolint.yaml:/root/.config/hadolint.yaml
 
