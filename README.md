@@ -3,7 +3,7 @@
 [![Build Status](https://drone.dotya.ml/api/badges/wanderer/docker-archlinux-hugo/status.svg?ref=refs/heads/master)](https://drone.dotya.ml/wanderer/docker-archlinux-hugo)
 [![Docker Cloud Build Status](https://img.shields.io/docker/cloud/build/immawanderer/archlinux-hugo)](https://hub.docker.com/r/immawanderer/archlinux-hugo/builds)
 
-This repository provides the Dockerfile to create a Docker image used for web developent using [Hugo](https://gohugo.io) website building framework.
+This repository provides a Containerfile to create a container image used for web developent using [Hugo](https://gohugo.io) website building framework.
 
 ## :warning: :construction: DockerHub issue :construction: :warning:
 unless you're running Arch (or a Fedora 34+ or some reasonably recent thing) as your host OS, please make sure you read through the following issue write-up (since DH issue affects the base image it affects this one, too) \
