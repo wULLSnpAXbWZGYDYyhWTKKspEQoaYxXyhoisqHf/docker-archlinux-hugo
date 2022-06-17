@@ -1,6 +1,6 @@
 FROM docker.io/immawanderer/archlinux:linux-amd64
 
-ENV HUGO_VERSION 0.100.2
+ENV HUGO_VERSION 0.101.0
 
 ARG BUILD_DATE
 ARG VCS_REF
