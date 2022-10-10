@@ -1,7 +1,6 @@
 # docker-archlinux-hugo
 
 [![Build Status](https://drone.dotya.ml/api/badges/wanderer/docker-archlinux-hugo/status.svg?ref=refs/heads/master)](https://drone.dotya.ml/wanderer/docker-archlinux-hugo)
-[![Docker Cloud Build Status](https://img.shields.io/docker/cloud/build/immawanderer/archlinux-hugo)](https://hub.docker.com/r/immawanderer/archlinux-hugo/builds)
 
 This repository provides a Containerfile to create a container image used for web developent using [Hugo](https://gohugo.io) website building framework.
 
